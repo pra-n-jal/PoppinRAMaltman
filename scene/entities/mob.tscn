@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://chcl5h5hrvrqm"]
+
+[ext_resource type="Script" uid="uid://3473yfhlt1mu" path="res://scripts/mob_base.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bdfda3fgr4wvo" path="res://assets/placeholders/mob_icon.png" id="2_b28c3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mob"]
+size = Vector2(36, 46)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_detect"]
+radius = 220.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_stomp"]
+size = Vector2(32, 12)
+
+[node name="Mob" type="CharacterBody2D" unique_id=1476189248 groups=["enemies"]]
+collision_layer = 4
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1400475322]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_mob")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1254305156]
+texture = ExtResource("2_b28c3")
+
+[node name="HealthBar" type="Control" parent="." unique_id=381316655]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -16.0
+offset_top = -32.0
+offset_right = 16.0
+offset_bottom = -30.0
+
+[node name="BgLine" type="ColorRect" parent="HealthBar" unique_id=1792034108]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 2.0
+color = Color(0.15, 0.15, 0.15, 0.8)
+
+[node name="HpLine" type="ColorRect" parent="HealthBar/BgLine" unique_id=885628416]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 2.0
+color = Color(0.9, 0.2, 0.2, 1)
+
+[node name="LedgeRayCast" type="RayCast2D" parent="." unique_id=1619397600]
+position = Vector2(20, 16)
+target_position = Vector2(0, 24)
+
+[node name="WallRayCast" type="RayCast2D" parent="." unique_id=84717678]
+target_position = Vector2(24, 0)
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=59969950]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=617941335]
+shape = SubResource("CircleShape2D_detect")
+
+[node name="StompArea" type="Area2D" parent="." unique_id=1161274886]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StompArea" unique_id=1368918370]
+position = Vector2(0, -22)
+shape = SubResource("RectangleShape2D_stomp")
+
+[connection signal="body_entered" from="StompArea" to="." method="_on_stomp_area_body_entered"]

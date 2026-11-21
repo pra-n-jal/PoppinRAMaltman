@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scene/bosses/boss_base.tscn" id="1_base"]
+
+[node name="BossLevel4" instance=ExtResource("1_base")]
+boss_name = "Boss 4"
+boss_title = ""
+boss_quote = ""
+phase2_quote = ""
+max_health = 360.0
+move_speed = 140.0
+dash_speed = 400.0
+attack_interval = 2.2

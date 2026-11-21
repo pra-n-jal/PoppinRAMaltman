@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scene/bosses/boss_base.tscn" id="1_base"]
+
+[node name="BossLevel1" instance=ExtResource("1_base")]
+boss_name = "Sam Altman"
+boss_title = ""
+boss_quote = ""
+phase2_quote = ""
+max_health = 180.0
+move_speed = 100.0
+dash_speed = 320.0
+attack_interval = 3.2

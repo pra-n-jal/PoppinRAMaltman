@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/background_brains.png" id="1_brain"]
+
+[node name="Backdrop" type="ParallaxBackground"]
+layer = -100
+
+[node name="BrainParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.15, 0.15)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="BrainSprite" type="Sprite2D" parent="BrainParallaxLayer"]
+position = Vector2(960, 360)
+texture = ExtResource("1_brain")
+
+[node name="ThematicTint" type="ColorRect" parent="BrainParallaxLayer"]
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 2120.0
+offset_bottom = 1200.0
+mouse_filter = 2
+color = Color(0.05, 0.08, 0.15, 0.25)

@@ -1,0 +1,80 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/level_base.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://scene/backdrop.tscn" id="2_backdrop"]
+[ext_resource type="PackedScene" path="res://scene/palyer.tscn" id="3_player"]
+[ext_resource type="PackedScene" path="res://scene/terrain/platform_ground.tscn" id="4_ground"]
+[ext_resource type="PackedScene" path="res://scene/terrain/platform_floating.tscn" id="5_float"]
+[ext_resource type="PackedScene" path="res://scene/terrain/boundary_wall.tscn" id="6_wall"]
+[ext_resource type="PackedScene" path="res://scene/entities/spawner.tscn" id="7_spawner"]
+[ext_resource type="PackedScene" path="res://scene/entities/mob.tscn" id="8_mob"]
+[ext_resource type="PackedScene" path="res://scene/bosses/boss_level1.tscn" id="9_boss"]
+[ext_resource type="PackedScene" path="res://scene/entities/level_portal.tscn" id="10_portal"]
+[ext_resource type="PackedScene" path="res://scene/ui/boss_health_bar.tscn" id="11_boss_bar"]
+[ext_resource type="PackedScene" path="res://scene/ui/player_hud.tscn" id="12_hud"]
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_script")
+level_number = 1
+level_name = "Level 1"
+
+[node name="Backdrop" parent="." instance=ExtResource("2_backdrop")]
+
+[node name="Terrain" type="Node2D" parent="."]
+
+[node name="LeftWall" parent="Terrain" instance=ExtResource("6_wall")]
+position = Vector2(-60, 200)
+
+[node name="RightWall" parent="Terrain" instance=ExtResource("6_wall")]
+position = Vector2(3100, 200)
+
+[node name="StartGround" parent="Terrain" instance=ExtResource("4_ground")]
+position = Vector2(250, 500)
+
+[node name="FloatPlat1" parent="Terrain" instance=ExtResource("5_float")]
+position = Vector2(560, 420)
+
+[node name="FloatPlat2" parent="Terrain" instance=ExtResource("5_float")]
+position = Vector2(820, 340)
+
+[node name="FloatPlat3" parent="Terrain" instance=ExtResource("5_float")]
+position = Vector2(1080, 260)
+
+[node name="MidGround" parent="Terrain" instance=ExtResource("4_ground")]
+position = Vector2(1380, 460)
+
+[node name="FloatPlat4" parent="Terrain" instance=ExtResource("5_float")]
+position = Vector2(1700, 380)
+
+[node name="FloatPlat5" parent="Terrain" instance=ExtResource("5_float")]
+position = Vector2(1960, 300)
+
+[node name="ArenaGround1" parent="Terrain" instance=ExtResource("4_ground")]
+position = Vector2(2350, 500)
+
+[node name="ArenaGround2" parent="Terrain" instance=ExtResource("4_ground")]
+position = Vector2(2850, 500)
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+position = Vector2(120, 420)
+
+[node name="Spawner" parent="." instance=ExtResource("7_spawner")]
+position = Vector2(1380, 410)
+spawn_interval = 4.5
+max_active_mobs = 3
+
+[node name="InitialMob" parent="." instance=ExtResource("8_mob")]
+position = Vector2(560, 370)
+
+[node name="Boss" parent="." instance=ExtResource("9_boss")]
+position = Vector2(2550, 420)
+
+[node name="LevelPortal" parent="." instance=ExtResource("10_portal")]
+position = Vector2(2980, 420)
+next_level_path = "res://scene/levels/level2.tscn"
+portal_label_text = "Level 2"
+
+[node name="BossHealthBar" parent="." instance=ExtResource("11_boss_bar")]
+
+[node name="PlayerHUD" parent="." instance=ExtResource("12_hud")]
+level_title_text = "Level 1"

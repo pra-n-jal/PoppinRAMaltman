@@ -1,0 +1,42 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/boss_health_bar.gd" id="1_script"]
+
+[node name="BossHealthBar" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_script")
+
+[node name="BarContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 24.0
+offset_right = 200.0
+offset_bottom = 60.0
+grow_horizontal = 2
+
+[node name="BossName" type="Label" parent="BarContainer"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 20.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "BOSS"
+horizontal_alignment = 1
+
+[node name="BgLine" type="ColorRect" parent="BarContainer"]
+layout_mode = 0
+offset_top = 22.0
+offset_right = 400.0
+offset_bottom = 26.0
+color = Color(0.2, 0.2, 0.2, 0.8)
+
+[node name="HpLine" type="ColorRect" parent="BarContainer/BgLine"]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 4.0
+color = Color(0.9, 0.2, 0.2, 1)
