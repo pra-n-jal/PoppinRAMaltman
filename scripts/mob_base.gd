@@ -11,6 +11,7 @@ signal mob_died(mob: CharacterBody2D)
 @export var show_health_bar := false
 
 var hp := 30.0
+var is_dead := false
 var dir := 1.0
 var player: CharacterBody2D = null
 
@@ -28,6 +29,9 @@ func _ready() -> void:
 		update_health_bar()
 
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
+
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -49,25 +53,49 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	# Contact damage to player
-	for i in get_slide_collision_count():
-		var col = get_slide_collision(i).get_collider()
-		if col and col.is_in_group("player") and col.has_method("take_damage"):
-			col.take_damage(contact_damage, Vector2(dir, -0.4).normalized())
+	if not is_dead:
+		for i in get_slide_collision_count():
+			var col = get_slide_collision(i).get_collider()
+			if col and col.is_in_group("player") and col.has_method("take_damage"):
+				# Stomp priority: If player descending onto mob from above
+				if col.velocity.y > 0 or col.global_position.y < global_position.y - 10.0:
+					if col.has_method("bounce"):
+						col.bounce(-420.0)
+					if col.has_method("reset_air_abilities"):
+						col.reset_air_abilities()
+					take_damage(max_health)
+					return
+				col.take_damage(contact_damage, Vector2(dir, -0.4).normalized())
 
 func take_damage(amount: float) -> void:
+	if is_dead:
+		return
+
 	hp = max(0, hp - amount)
 	update_health_bar()
 
 	if show_health_bar and health_bar:
 		health_bar.visible = true
 
-	if sprite: sprite.modulate = Color.RED
-	await get_tree().create_timer(0.15).timeout
-	if sprite: sprite.modulate = Color.WHITE
-
 	if hp <= 0:
+		is_dead = true
+		set_physics_process(false)
+		collision_layer = 0
+		collision_mask = 0
 		mob_died.emit(self)
+		# Death pop effect
+		if sprite:
+			var tw = create_tween()
+			tw.tween_property(sprite, "scale", Vector2(1.8, 0.2), 0.08)
+			tw.parallel().tween_property(sprite, "modulate:a", 0.0, 0.08)
+			await tw.finished
 		queue_free()
+		return
+
+	if sprite:
+		sprite.modulate = Color.RED
+		var tw = create_tween()
+		tw.tween_property(sprite, "modulate", Color.WHITE, 0.12)
 
 func update_health_bar() -> void:
 	if hp_line:

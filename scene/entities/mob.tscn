@@ -4,13 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://bdfda3fgr4wvo" path="res://assets/entities/neuron_mob.png" id="2_b28c3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mob"]
-size = Vector2(36, 46)
+size = Vector2(48, 54)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_detect"]
-radius = 220.0
+radius = 260.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stomp"]
-size = Vector2(32, 12)
+size = Vector2(42, 14)
 
 [node name="Mob" type="CharacterBody2D" unique_id=1476189248 groups=["enemies"]]
 collision_layer = 4
@@ -21,6 +21,7 @@ position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_mob")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1254305156]
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_b28c3")
 
 [node name="HealthBar" type="Control" parent="." unique_id=381316655]

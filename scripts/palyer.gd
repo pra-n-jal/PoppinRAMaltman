@@ -82,6 +82,9 @@ func _ready() -> void:
 	lives_changed.emit(lives_left, max_lives)
 	if attack_sprite:
 		attack_sprite.visible = false
+	if attack_area:
+		attack_area.body_entered.connect(_on_attack_target_entered)
+		attack_area.area_entered.connect(_on_attack_target_entered)
 
 func _physics_process(delta: float) -> void:
 	handle_timers(delta)
@@ -93,6 +96,21 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	process_elastic_squash(delta)
+
+	# Dynamic stomp check: landing on any enemy from above bounces and destroys it
+	if velocity.y > 0.0:
+		for enemy in get_tree().get_nodes_in_group("enemies"):
+			if not is_instance_valid(enemy) or enemy == self:
+				continue
+			if "is_dead" in enemy and enemy.is_dead:
+				continue
+			var diff = enemy.global_position - global_position
+			if abs(diff.x) <= 50.0 and diff.y >= 0.0 and diff.y <= 65.0:
+				bounce(-480.0)
+				reset_air_abilities()
+				if enemy.has_method("take_damage"):
+					enemy.take_damage(50.0)
+				break
 
 	# Pit death threshold (instant responsive pit death without endless void falling)
 	if global_position.y > 750:
@@ -256,7 +274,7 @@ func is_climb_held() -> bool:
 func is_attack_just_pressed() -> bool:
 	if InputMap.has_action("attack") and Input.is_action_just_pressed("attack"):
 		return true
-	return Input.is_key_pressed(KEY_L) or Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	return Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or Input.is_key_pressed(KEY_J) or Input.is_key_pressed(KEY_L) or Input.is_key_pressed(KEY_F)
 
 func start_dash(input_x: float, input_y: float) -> void:
 	can_dash = false
@@ -308,18 +326,53 @@ func reset_air_abilities() -> void:
 
 func attack() -> void:
 	can_attack = false
-	if attack_area: attack_area.monitoring = true
-	if attack_sprite: attack_sprite.visible = true
+	if attack_sprite:
+		attack_sprite.visible = true
+	if attack_area:
+		attack_area.monitoring = true
 
+	# Instant spatial check to hit all enemies in front of the player reliably on frame 0
+	_hit_enemies_in_attack_range()
+
+	# Also check any overlapping bodies already in the area
 	if attack_area:
 		for body in attack_area.get_overlapping_bodies():
 			if body != self and body.has_method("take_damage"):
 				body.take_damage(attack_damage)
 
 	await get_tree().create_timer(0.18).timeout
-	if attack_area: attack_area.monitoring = false
-	if attack_sprite: attack_sprite.visible = false
+	if attack_area:
+		attack_area.monitoring = false
+	if attack_sprite:
+		attack_sprite.visible = false
 	can_attack = true
+
+func _on_attack_target_entered(target: Node) -> void:
+	if not attack_area or not attack_area.monitoring:
+		return
+	var enemy = target
+	if enemy is Area2D and enemy.get_parent():
+		enemy = enemy.get_parent()
+	if enemy and enemy != self and enemy.has_method("take_damage"):
+		enemy.take_damage(attack_damage)
+
+func _hit_enemies_in_attack_range() -> void:
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		if not is_instance_valid(enemy) or enemy == self:
+			continue
+		if "is_dead" in enemy and enemy.is_dead:
+			continue
+		var to_enemy = enemy.global_position - global_position
+		# Facing range: forward up to 130px, behind up to 40px, vertical +/- 75px
+		var x_ok = false
+		if facing_dir > 0:
+			x_ok = (to_enemy.x >= -40.0 and to_enemy.x <= 130.0)
+		else:
+			x_ok = (to_enemy.x <= 40.0 and to_enemy.x >= -130.0)
+		var y_ok = abs(to_enemy.y) <= 75.0
+		if x_ok and y_ok:
+			if enemy.has_method("take_damage"):
+				enemy.take_damage(attack_damage)
 
 func take_damage(amount: float, knock_dir := Vector2.ZERO) -> void:
 	if is_invulnerable or hp <= 0:

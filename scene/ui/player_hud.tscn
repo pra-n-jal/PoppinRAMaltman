@@ -19,90 +19,38 @@ mouse_filter = 2
 [node name="LeftHUDBox" type="VBoxContainer" parent="HUD"]
 layout_mode = 0
 offset_left = 24.0
-offset_top = 18.0
-offset_right = 500.0
-offset_bottom = 220.0
-theme_override_constants/separation = 10
-
-[node name="LevelLabel" type="Label" parent="HUD/LeftHUDBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.95, 0.95, 0.9)
-theme_override_font_sizes/font_size = 13
-text = "PARKOUR RUN: NEURAL HIGHWAY"
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 180.0
+theme_override_constants/separation = 12
 
 [node name="GaugesHBox" type="HBoxContainer" parent="HUD/LeftHUDBox"]
 layout_mode = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 20
 
-[node name="HPContainer" type="VBoxContainer" parent="HUD/LeftHUDBox/GaugesHBox"]
-layout_mode = 2
-theme_override_constants/separation = 4
-alignment = 1
-
-[node name="HpGauge" type="Control" parent="HUD/LeftHUDBox/GaugesHBox/HPContainer"]
-custom_minimum_size = Vector2(56, 56)
+[node name="HpGauge" type="Control" parent="HUD/LeftHUDBox/GaugesHBox"]
+custom_minimum_size = Vector2(92, 92)
 layout_mode = 2
 size_flags_horizontal = 4
 script = ExtResource("2_gauge")
 gauge_title = "HP"
 fg_color = Color(0.95, 0.2, 0.25, 0.95)
-radius = 26.0
+radius = 42.0
 
-[node name="HPLabel" type="Label" parent="HUD/LeftHUDBox/GaugesHBox/HPContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.5, 0.55, 0.95)
-theme_override_font_sizes/font_size = 11
-text = "HP"
-horizontal_alignment = 1
-
-[node name="StaminaContainer" type="VBoxContainer" parent="HUD/LeftHUDBox/GaugesHBox"]
-layout_mode = 2
-theme_override_constants/separation = 4
-alignment = 1
-
-[node name="StaminaGauge" type="Control" parent="HUD/LeftHUDBox/GaugesHBox/StaminaContainer"]
-custom_minimum_size = Vector2(56, 56)
+[node name="StaminaGauge" type="Control" parent="HUD/LeftHUDBox/GaugesHBox"]
+custom_minimum_size = Vector2(92, 92)
 layout_mode = 2
 size_flags_horizontal = 4
 script = ExtResource("2_gauge")
 gauge_title = "STAMINA"
 fg_color = Color(0.2, 0.75, 1, 0.95)
-radius = 26.0
-
-[node name="StaminaLabel" type="Label" parent="HUD/LeftHUDBox/GaugesHBox/StaminaContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.5, 0.85, 1, 0.95)
-theme_override_font_sizes/font_size = 11
-text = "STAMINA"
-horizontal_alignment = 1
+radius = 42.0
 
 [node name="LivesLabel" type="Label" parent="HUD/LeftHUDBox"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.9, 0.9, 0.95)
-theme_override_font_sizes/font_size = 13
-text = "LIVES: ❤️ ❤️ ❤️"
-
-[node name="ControlsLabel" type="Label" parent="HUD/LeftHUDBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 0.85)
-theme_override_font_sizes/font_size = 11
-text = "A/D: Move | W/Space: Jump (Double Jump) | K/X: Dash (8-Way) | Shift: Climb"
-
-[node name="TestBossHudBtn" type="Button" parent="HUD"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -220.0
-offset_top = 16.0
-offset_right = -20.0
-offset_bottom = 44.0
-grow_horizontal = 0
-mouse_filter = 0
-theme_override_colors/font_color = Color(1, 0.6, 0.6, 0.9)
-theme_override_colors/font_hover_color = Color(1, 0.85, 0.85, 1)
-theme_override_font_sizes/font_size = 11
-text = "⚡ TEST BOSS (F1 / B)"
+theme_override_colors/font_color = Color(1, 0.85, 0.85, 0.95)
+theme_override_font_sizes/font_size = 15
+text = "LIVES: ♥ ♥ ♥"
 
 [node name="GameOverPanel" type="Control" parent="."]
 visible = false

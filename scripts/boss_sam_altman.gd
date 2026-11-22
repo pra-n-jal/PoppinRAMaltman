@@ -54,8 +54,6 @@ var banner_tween: Tween = null
 @onready var shoot_point: Marker2D = $ShootPoint
 @onready var melee_area: Area2D = $MeleeArea
 @onready var charge_aura: CPUParticles2D = get_node_or_null("ChargeAura")
-@onready var warning_label: Label = get_node_or_null("WarningLabel")
-@onready var section_banner: Sprite2D = get_node_or_null("SectionBanner")
 
 func _ready() -> void:
 	add_to_group("boss")
@@ -63,16 +61,11 @@ func _ready() -> void:
 	hp = max_health
 	spawn_pos = global_position
 	_setup_sprite_frames()
-	_load_section_banners()
 
-	if warning_label:
-		warning_label.visible = false
 	if charge_aura:
 		charge_aura.emitting = false
 	if melee_area:
 		melee_area.monitoring = false
-	if section_banner:
-		section_banner.visible = false
 
 func _load_section_banners() -> void:
 	if _cached_banners.size() > 0:
@@ -88,26 +81,8 @@ func _load_section_banners() -> void:
 	}
 	section_banners = _cached_banners
 
-func show_section_banner(section_key: String, duration := 1.0) -> void:
-	if not section_banner or not section_banners.has(section_key):
-		return
-	var tex = section_banners[section_key]
-	if not tex:
-		return
-
-	if banner_tween and banner_tween.is_valid():
-		banner_tween.kill()
-
-	section_banner.texture = tex
-	section_banner.visible = true
-	section_banner.scale = Vector2(0.5, 0.5)
-	section_banner.modulate = Color(1, 1, 1, 1)
-
-	banner_tween = create_tween()
-	banner_tween.tween_property(section_banner, "scale", Vector2(0.85, 0.85), 0.15).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	banner_tween.tween_interval(duration)
-	banner_tween.tween_property(section_banner, "modulate:a", 0.0, 0.25)
-	banner_tween.tween_callback(func(): if section_banner: section_banner.visible = false)
+func show_section_banner(_section_key: String, _duration := 1.0) -> void:
+	pass
 
 func _setup_sprite_frames() -> void:
 	if _cached_frames != null:
@@ -187,14 +162,10 @@ func reset_boss() -> void:
 	contact_cooldown = 1.0
 	modulate = Color.WHITE
 
-	if warning_label:
-		warning_label.visible = false
 	if charge_aura:
 		charge_aura.emitting = false
 	if melee_area:
 		melee_area.monitoring = false
-	if section_banner:
-		section_banner.visible = false
 	if animated_sprite:
 		animated_sprite.play("idle")
 		animated_sprite.modulate = Color.WHITE
@@ -374,14 +345,8 @@ func _change_state(new_state: State) -> void:
 				charge_aura.emitting = false
 			if animated_sprite:
 				animated_sprite.play("aiming")
-			if warning_label:
-				warning_label.text = "⚠ ALLOCATING LETHAL RAM ⚠"
-				warning_label.visible = true
-			show_section_banner("aiming", 0.8)
 
 		State.RAM_THROW:
-			if warning_label:
-				warning_label.visible = false
 			_sling_ram_projectile()
 			if animated_sprite:
 				animated_sprite.play("power_strike")
@@ -478,11 +443,6 @@ func take_damage(amount: float) -> void:
 	# Phase 3 trigger at 33% HP
 	if hp <= max_health * 0.33 and not is_phase3:
 		is_phase3 = true
-		if warning_label:
-			warning_label.text = "⚡ OVERCLOCK MODE: MAXIMUM COMPUTE ⚡"
-			warning_label.visible = true
-			get_tree().create_timer(1.8).timeout.connect(func(): if warning_label: warning_label.visible = false)
-		show_section_banner("aiming", 1.5)
 
 	if hp <= 0:
 		_die()
@@ -493,10 +453,6 @@ func _die() -> void:
 	velocity = Vector2.ZERO
 	if charge_aura:
 		charge_aura.emitting = false
-	if warning_label:
-		warning_label.visible = false
-	if section_banner:
-		section_banner.visible = false
 
 	# Dramatic defeat explosion
 	var p = CPUParticles2D.new()

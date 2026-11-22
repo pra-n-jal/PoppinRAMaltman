@@ -29,108 +29,94 @@ level_name = "NEURAL HIGHWAY: PARKOUR RUN"
 [node name="LeftBoundaryWall" parent="Terrain" instance=ExtResource("5_bwall")]
 position = Vector2(-100, 300)
 
-[node name="StartGround" parent="Terrain" instance=ExtResource("6_g_long")]
+[node name="StartGround1" parent="Terrain" instance=ExtResource("6_g_long")]
 position = Vector2(170, 520)
 
+[node name="StartGround2" parent="Terrain" instance=ExtResource("6_g_long")]
+position = Vector2(505, 520)
+
 [node name="StartStep" parent="Terrain" instance=ExtResource("11_p_step")]
-position = Vector2(490, 480)
+position = Vector2(820, 480)
 
-[node name="Float1" parent="Terrain" instance=ExtResource("7_p_float")]
-position = Vector2(760, 410)
-
-[node name="Block1" parent="Terrain" instance=ExtResource("8_b_sq")]
-position = Vector2(980, 340)
-
-[node name="MidGround1" parent="Terrain" instance=ExtResource("6_g_long")]
-position = Vector2(1250, 340)
-
-[node name="DashBlock1" parent="Terrain" instance=ExtResource("8_b_sq")]
-position = Vector2(1540, 310)
-
-[node name="MidFloatBridge" parent="Terrain" instance=ExtResource("7_p_float")]
-position = Vector2(1760, 310)
+[node name="LowerPlateau" parent="Terrain" instance=ExtResource("6_g_long")]
+position = Vector2(1140, 440)
 
 [node name="FlyingMob1" parent="Terrain" instance=ExtResource("14_flymob")]
-position = Vector2(1820, 210)
+position = Vector2(1140, 320)
 
-[node name="DashFloat2" parent="Terrain" instance=ExtResource("7_p_float")]
-position = Vector2(2040, 290)
+[node name="BridgeFloat1" parent="Terrain" instance=ExtResource("7_p_float")]
+position = Vector2(1480, 390)
 
-[node name="StepFloatBridge" parent="Terrain" instance=ExtResource("11_p_step")]
-position = Vector2(2300, 290)
+[node name="MidHighway1" parent="Terrain" instance=ExtResource("6_g_long")]
+position = Vector2(1780, 340)
+
+[node name="MidHighway2" parent="Terrain" instance=ExtResource("6_g_long")]
+position = Vector2(2115, 340)
 
 [node name="FlyingMob2" parent="Terrain" instance=ExtResource("14_flymob")]
-position = Vector2(2350, 190)
+position = Vector2(2000, 220)
 
-[node name="StepLanding" parent="Terrain" instance=ExtResource("11_p_step")]
-position = Vector2(2550, 300)
+[node name="ElevatedStep1" parent="Terrain" instance=ExtResource("11_p_step")]
+position = Vector2(2430, 300)
+
+[node name="SpringboardPlatform" parent="Terrain" instance=ExtResource("6_g_long")]
+position = Vector2(2740, 260)
 
 [node name="BouncePad1" parent="Terrain" instance=ExtResource("13_bounce")]
-position = Vector2(2720, 230)
+position = Vector2(2840, 215)
 
 [node name="CanyonTallWallLeft" parent="Terrain" instance=ExtResource("12_c_tallleft")]
-position = Vector2(2950, 100)
+position = Vector2(3050, 100)
 
-[node name="CanyonWallRight1" parent="Terrain" instance=ExtResource("9_c_topright")]
-position = Vector2(3170, 150)
+[node name="CanyonWallRight" parent="Terrain" instance=ExtResource("9_c_topright")]
+position = Vector2(3280, 80)
 
-[node name="CanyonWallRight2" parent="Terrain" instance=ExtResource("9_c_topright")]
-position = Vector2(3170, -60)
+[node name="CanyonCornerUpper" parent="Terrain" instance=ExtResource("10_c_left")]
+position = Vector2(3050, -80)
 
-[node name="CanyonCornerLeftUpper" parent="Terrain" instance=ExtResource("10_c_left")]
-position = Vector2(2950, -80)
+[node name="CanyonTopPlatform" parent="Terrain" instance=ExtResource("6_g_long")]
+position = Vector2(3480, -60)
 
-[node name="CanyonTopLedge" parent="Terrain" instance=ExtResource("6_g_long")]
-position = Vector2(3360, -180)
+[node name="SkywayHighway1" parent="Terrain" instance=ExtResource("6_g_long")]
+position = Vector2(3880, -100)
 
-[node name="SkywayCornerLeft" parent="Terrain" instance=ExtResource("10_c_left")]
-position = Vector2(3650, -140)
-
-[node name="SkywayFloat1" parent="Terrain" instance=ExtResource("7_p_float")]
-position = Vector2(3920, -100)
-
-[node name="SkywayBounce" parent="Terrain" instance=ExtResource("13_bounce")]
-position = Vector2(3920, -125)
-
-[node name="SkywayBlock" parent="Terrain" instance=ExtResource("8_b_sq")]
-position = Vector2(4220, -120)
+[node name="SkywayHighway2" parent="Terrain" instance=ExtResource("6_g_long")]
+position = Vector2(4215, -100)
 
 [node name="FlyingMob3" parent="Terrain" instance=ExtResource("14_flymob")]
-position = Vector2(4220, -200)
+position = Vector2(4080, -210)
 
-[node name="SkywayFloat2" parent="Terrain" instance=ExtResource("7_p_float")]
-position = Vector2(4500, -80)
+[node name="SkywayFloatGap" parent="Terrain" instance=ExtResource("7_p_float")]
+position = Vector2(4560, -140)
 
 [node name="FlyingMob4" parent="Terrain" instance=ExtResource("14_flymob")]
-position = Vector2(4700, -160)
+position = Vector2(4560, -250)
 
-[node name="FinalRestGround" parent="Terrain" instance=ExtResource("6_g_long")]
-position = Vector2(4980, -50)
+[node name="HighPlateau" parent="Terrain" instance=ExtResource("6_g_long")]
+position = Vector2(4900, -180)
 
-[node name="FinalStep" parent="Terrain" instance=ExtResource("11_p_step")]
-position = Vector2(5260, -100)
+[node name="LaunchPad2" parent="Terrain" instance=ExtResource("13_bounce")]
+position = Vector2(5000, -225)
 
-[node name="FinalLaunchBounce" parent="Terrain" instance=ExtResource("13_bounce")]
-position = Vector2(5340, -145)
+[node name="PinnacleBridge1" parent="Terrain" instance=ExtResource("6_g_long")]
+position = Vector2(5380, -300)
 
-[node name="PinnacleStepFloat" parent="Terrain" instance=ExtResource("7_p_float")]
-position = Vector2(5580, -220)
-
-[node name="PinnacleLedge" parent="Terrain" instance=ExtResource("11_p_step")]
-position = Vector2(5820, -300)
+[node name="PinnacleBridge2" parent="Terrain" instance=ExtResource("6_g_long")]
+position = Vector2(5715, -300)
 
 [node name="FlyingMob5" parent="Terrain" instance=ExtResource("14_flymob")]
-position = Vector2(5820, -380)
+position = Vector2(5600, -410)
 
-[node name="PinnacleGround" parent="Terrain" instance=ExtResource("6_g_long")]
-position = Vector2(6100, -380)
+[node name="PinnacleFinalLedge" parent="Terrain" instance=ExtResource("6_g_long")]
+position = Vector2(6050, -300)
 
 [node name="LevelPortal" parent="Terrain" instance=ExtResource("16_portal")]
-position = Vector2(6150, -440)
+position = Vector2(6120, -380)
 next_level_path = "res://scene/levels/boss_level_sam_altman.tscn"
+is_unlocked = true
 
 [node name="RightBoundaryWall" parent="Terrain" instance=ExtResource("5_bwall")]
-position = Vector2(6350, -400)
+position = Vector2(6350, -350)
 
 [node name="Player" parent="." instance=ExtResource("3_player")]
 position = Vector2(80, 440)

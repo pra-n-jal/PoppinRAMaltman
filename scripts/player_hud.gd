@@ -5,8 +5,8 @@ extends CanvasLayer
 var max_hp := 100.0
 var max_stamina := 100.0
 
-@onready var hp_gauge: Control = get_node_or_null("HUD/LeftHUDBox/GaugesHBox/HPContainer/HpGauge")
-@onready var stamina_gauge: Control = get_node_or_null("HUD/LeftHUDBox/GaugesHBox/StaminaContainer/StaminaGauge")
+@onready var hp_gauge: Control = get_node_or_null("HUD/LeftHUDBox/GaugesHBox/HpGauge")
+@onready var stamina_gauge: Control = get_node_or_null("HUD/LeftHUDBox/GaugesHBox/StaminaGauge")
 @onready var lives_label: Label = get_node_or_null("HUD/LeftHUDBox/LivesLabel")
 @onready var test_boss_btn: Button = get_node_or_null("HUD/TestBossHudBtn")
 @onready var level_label: Label = get_node_or_null("HUD/LeftHUDBox/LevelLabel")
@@ -76,9 +76,9 @@ func _on_lives_changed(current_lives: int, max_lives: int) -> void:
 		var hearts = ""
 		for i in range(max_lives):
 			if i < current_lives:
-				hearts += "❤️ "
+				hearts += "♥ "
 			else:
-				hearts += "🖤 "
+				hearts += "♡ "
 		lives_label.text = "LIVES: %s" % hearts.strip_edges()
 
 func _on_game_over() -> void:

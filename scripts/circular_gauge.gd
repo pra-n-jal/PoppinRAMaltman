@@ -32,7 +32,7 @@ extends Control
 		border_color = v
 		queue_redraw()
 
-@export var radius := 28.0:
+@export var radius := 42.0:
 	set(v):
 		radius = v
 		custom_minimum_size = Vector2(v * 2 + 8, v * 2 + 8)
