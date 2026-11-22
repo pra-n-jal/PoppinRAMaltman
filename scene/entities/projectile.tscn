@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/placeholders/projectile_placeholder.png" id="2_tex"]
+[ext_resource type="Texture2D" path="res://assets/boss/sam_altman/slop_blast.png" id="2_tex"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_proj"]
 radius = 12.0

@@ -1,0 +1,24 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/terrain/terrain_corner_left.png" id="1_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_base"]
+size = Vector2(200, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
+size = Vector2(48, 86)
+
+[node name="TerrainCornerLeft" type="StaticBody2D" groups=["terrain"]]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tex")
+
+[node name="CollisionBase" type="CollisionShape2D" parent="."]
+position = Vector2(0, 43)
+shape = SubResource("RectangleShape2D_base")
+
+[node name="CollisionWall" type="CollisionShape2D" parent="."]
+position = Vector2(-76, -23)
+shape = SubResource("RectangleShape2D_wall")

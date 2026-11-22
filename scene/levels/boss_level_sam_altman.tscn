@@ -1,0 +1,99 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/level_base.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://scene/backdrop.tscn" id="2_backdrop"]
+[ext_resource type="PackedScene" path="res://scene/palyer.tscn" id="3_player"]
+[ext_resource type="PackedScene" path="res://scene/terrain/terrain_ground_long.tscn" id="4_ground"]
+[ext_resource type="PackedScene" path="res://scene/terrain/terrain_platform_floating.tscn" id="5_float"]
+[ext_resource type="PackedScene" path="res://scene/terrain/boundary_wall.tscn" id="6_wall"]
+[ext_resource type="PackedScene" path="res://scene/bosses/boss_sam_altman.tscn" id="7_boss"]
+[ext_resource type="PackedScene" path="res://scene/entities/level_portal.tscn" id="8_portal"]
+[ext_resource type="PackedScene" path="res://scene/ui/boss_health_bar.tscn" id="9_boss_bar"]
+[ext_resource type="PackedScene" path="res://scene/ui/player_hud.tscn" id="10_hud"]
+[ext_resource type="PackedScene" path="res://scene/ui/dialogue_board.tscn" id="11_dialogue"]
+
+[node name="BossLevelSamAltman" type="Node2D"]
+script = ExtResource("1_script")
+level_number = 5
+level_name = "THE FINAL LEVEL: SAM ALTMAN"
+show_start_dialogue = true
+start_dialogue_lines = [{
+"speaker": "SAM ALTMAN",
+"text": "Welcome to my datacenter. I am the man. The myth. The Sloppenheimer."
+}, {
+"speaker": "MEUKEUL",
+"text": "Your infinite AI slop ends right here, Altman!"
+}, {
+"speaker": "SAM ALTMAN",
+"text": "Fool! I have 100,000 H100 GPUs and infinite RAM! Prepare to be instantly de-allocated!"
+}]
+
+[node name="Backdrop" parent="." instance=ExtResource("2_backdrop")]
+
+[node name="Terrain" type="Node2D" parent="."]
+
+[node name="LeftWall" parent="Terrain" instance=ExtResource("6_wall")]
+position = Vector2(-60, 200)
+
+[node name="RightWall" parent="Terrain" instance=ExtResource("6_wall")]
+position = Vector2(3400, 200)
+
+[node name="Ground1" parent="Terrain" instance=ExtResource("4_ground")]
+position = Vector2(180, 520)
+
+[node name="Ground2" parent="Terrain" instance=ExtResource("4_ground")]
+position = Vector2(515, 520)
+
+[node name="Ground3" parent="Terrain" instance=ExtResource("4_ground")]
+position = Vector2(850, 520)
+
+[node name="Ground4" parent="Terrain" instance=ExtResource("4_ground")]
+position = Vector2(1185, 520)
+
+[node name="Ground5" parent="Terrain" instance=ExtResource("4_ground")]
+position = Vector2(1520, 520)
+
+[node name="Ground6" parent="Terrain" instance=ExtResource("4_ground")]
+position = Vector2(1855, 520)
+
+[node name="Ground7" parent="Terrain" instance=ExtResource("4_ground")]
+position = Vector2(2190, 520)
+
+[node name="Ground8" parent="Terrain" instance=ExtResource("4_ground")]
+position = Vector2(2525, 520)
+
+[node name="Ground9" parent="Terrain" instance=ExtResource("4_ground")]
+position = Vector2(2860, 520)
+
+[node name="Ground10" parent="Terrain" instance=ExtResource("4_ground")]
+position = Vector2(3195, 520)
+
+[node name="Ledge1" parent="Terrain" instance=ExtResource("5_float")]
+position = Vector2(700, 380)
+
+[node name="Ledge2" parent="Terrain" instance=ExtResource("5_float")]
+position = Vector2(1350, 330)
+
+[node name="Ledge3" parent="Terrain" instance=ExtResource("5_float")]
+position = Vector2(2000, 380)
+
+[node name="Ledge4" parent="Terrain" instance=ExtResource("5_float")]
+position = Vector2(2650, 330)
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+position = Vector2(200, 440)
+
+[node name="Boss" parent="." instance=ExtResource("7_boss")]
+position = Vector2(1800, 495)
+
+[node name="LevelPortal" parent="." instance=ExtResource("8_portal")]
+position = Vector2(3100, 440)
+next_level_path = "res://scene/ui/victory_screen.tscn"
+portal_label_text = "VICTORY"
+
+[node name="BossHealthBar" parent="." instance=ExtResource("9_boss_bar")]
+
+[node name="PlayerHUD" parent="." instance=ExtResource("10_hud")]
+level_title_text = "FINAL BOSS: THE SLOPPENHEIMER"
+
+[node name="DialogueBoard" parent="." instance=ExtResource("11_dialogue")]

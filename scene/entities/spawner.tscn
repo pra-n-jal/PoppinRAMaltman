@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/placeholders/spawner_placeholder.png" id="2_tex"]
+[ext_resource type="Texture2D" path="res://assets/entities/neuron_mob.png" id="2_tex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_spawner"]
 size = Vector2(80, 84)

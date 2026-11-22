@@ -1,6 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/player_hud.gd" id="1_script"]
+[ext_resource type="Script" path="res://scripts/circular_gauge.gd" id="2_gauge"]
 
 [node name="PlayerHUD" type="CanvasLayer"]
 layer = 5
@@ -15,46 +16,159 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="LevelLabel" type="Label" parent="HUD"]
+[node name="LeftHUDBox" type="VBoxContainer" parent="HUD"]
 layout_mode = 0
-offset_left = 20.0
-offset_top = 16.0
-offset_right = 400.0
-offset_bottom = 36.0
-theme_override_colors/font_color = Color(1, 1, 1, 0.9)
-theme_override_font_sizes/font_size = 12
-text = "LEVEL 1: PROMPT ENGINEERING ACADEMY"
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 500.0
+offset_bottom = 220.0
+theme_override_constants/separation = 10
 
-[node name="HpText" type="Label" parent="HUD"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 38.0
-offset_right = 120.0
-offset_bottom = 54.0
-theme_override_colors/font_color = Color(1, 1, 1, 0.8)
+[node name="LevelLabel" type="Label" parent="HUD/LeftHUDBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.95, 0.9)
+theme_override_font_sizes/font_size = 13
+text = "PARKOUR RUN: NEURAL HIGHWAY"
+
+[node name="GaugesHBox" type="HBoxContainer" parent="HUD/LeftHUDBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="HPContainer" type="VBoxContainer" parent="HUD/LeftHUDBox/GaugesHBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="HpGauge" type="Control" parent="HUD/LeftHUDBox/GaugesHBox/HPContainer"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("2_gauge")
+gauge_title = "HP"
+fg_color = Color(0.95, 0.2, 0.25, 0.95)
+radius = 26.0
+
+[node name="HPLabel" type="Label" parent="HUD/LeftHUDBox/GaugesHBox/HPContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.5, 0.55, 0.95)
 theme_override_font_sizes/font_size = 11
-text = "HP: 100/100"
+text = "HP"
+horizontal_alignment = 1
 
-[node name="HpBgLine" type="ColorRect" parent="HUD"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 58.0
-offset_right = 170.0
-offset_bottom = 61.0
-color = Color(0.2, 0.2, 0.2, 0.8)
+[node name="StaminaContainer" type="VBoxContainer" parent="HUD/LeftHUDBox/GaugesHBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
 
-[node name="HpLine" type="ColorRect" parent="HUD/HpBgLine"]
-layout_mode = 0
-offset_right = 150.0
-offset_bottom = 3.0
-color = Color(0.2, 0.9, 0.3, 1)
+[node name="StaminaGauge" type="Control" parent="HUD/LeftHUDBox/GaugesHBox/StaminaContainer"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("2_gauge")
+gauge_title = "STAMINA"
+fg_color = Color(0.2, 0.75, 1, 0.95)
+radius = 26.0
 
-[node name="ControlsLabel" type="Label" parent="HUD"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 68.0
-offset_right = 450.0
-offset_bottom = 84.0
-theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 0.6)
-theme_override_font_sizes/font_size = 10
-text = "Move: A/D/Arrows | Jump: Space/W | Attack: J / Left Click"
+[node name="StaminaLabel" type="Label" parent="HUD/LeftHUDBox/GaugesHBox/StaminaContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.85, 1, 0.95)
+theme_override_font_sizes/font_size = 11
+text = "STAMINA"
+horizontal_alignment = 1
+
+[node name="LivesLabel" type="Label" parent="HUD/LeftHUDBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.9, 0.95)
+theme_override_font_sizes/font_size = 13
+text = "LIVES: ❤️ ❤️ ❤️"
+
+[node name="ControlsLabel" type="Label" parent="HUD/LeftHUDBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 0.85)
+theme_override_font_sizes/font_size = 11
+text = "A/D: Move | W/Space: Jump (Double Jump) | K/X: Dash (8-Way) | Shift: Climb"
+
+[node name="TestBossHudBtn" type="Button" parent="HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_top = 16.0
+offset_right = -20.0
+offset_bottom = 44.0
+grow_horizontal = 0
+mouse_filter = 0
+theme_override_colors/font_color = Color(1, 0.6, 0.6, 0.9)
+theme_override_colors/font_hover_color = Color(1, 0.85, 0.85, 1)
+theme_override_font_sizes/font_size = 11
+text = "⚡ TEST BOSS (F1 / B)"
+
+[node name="GameOverPanel" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DimOverlay" type="ColorRect" parent="GameOverPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.06, 0.02, 0.04, 0.88)
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOverPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="GameOverPanel/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="GameOverTitle" type="Label" parent="GameOverPanel/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.2, 0.25, 1)
+theme_override_colors/font_shadow_color = Color(0.4, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 46
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="GameOverSub" type="Label" parent="GameOverPanel/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.85, 0.95)
+theme_override_font_sizes/font_size = 15
+text = "Out of Memory! All 3 lives consumed.\nReturning to Main Menu..."
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="GameOverPanel/CenterContainer/VBox"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="ButtonsHBox" type="HBoxContainer" parent="GameOverPanel/CenterContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="RestartBtn" type="Button" parent="GameOverPanel/CenterContainer/VBox/ButtonsHBox"]
+custom_minimum_size = Vector2(170, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "🔄 RESTART"
+
+[node name="MenuBtn" type="Button" parent="GameOverPanel/CenterContainer/VBox/ButtonsHBox"]
+custom_minimum_size = Vector2(170, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "🏠 MAIN MENU"

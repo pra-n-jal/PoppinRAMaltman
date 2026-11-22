@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/palyer.gd" id="1_fehau"]
 [ext_resource type="Texture2D" uid="uid://c33c26gc0oo57" path="res://assets/player/image-removebg-preview.png" id="1_jt6p6"]
-[ext_resource type="Texture2D" path="res://assets/placeholders/slash_placeholder.png" id="2_slash"]
+[ext_resource type="Texture2D" path="res://assets/player/player_slash.png" id="2_slash"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_446fn"]
 size = Vector2(49, 36)
@@ -39,8 +39,9 @@ texture = ExtResource("2_slash")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1, 1)
 process_callback = 0
-limit_left = -200
-limit_top = -600
-limit_bottom = 1200
+limit_left = 0
+limit_top = -2000
+limit_right = 15000
+limit_bottom = 620
 position_smoothing_enabled = true
-position_smoothing_speed = 6.0
+position_smoothing_speed = 8.0

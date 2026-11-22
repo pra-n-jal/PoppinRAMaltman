@@ -1,6 +1,6 @@
 [gd_scene format=3]
 
-[ext_resource type="Texture2D" path="res://assets/placeholders/terrain_ground.png" id="1_tex"]
+[ext_resource type="Texture2D" path="res://assets/terrain/terrain_ground_long.png" id="1_tex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
 size = Vector2(512, 64)

@@ -1,10 +1,6 @@
-[gd_scene format=3 uid="uid://dem01exoihv0r"]
+[gd_scene format=3 uid="uid://d4c6l4co0ravr"]
 
 [ext_resource type="PackedScene" uid="uid://d0yp5e4eiks2u" path="res://scene/palyer.tscn" id="1_cknwn"]
-[ext_resource type="Texture2D" uid="uid://mg8fyjjyr0b7" path="res://assets/11e5e16adbe7b169f765d92768aef7d9.jpg" id="2_446fn"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_08neb"]
-size = Vector2(670.00006, 1180.0001)
 
 [node name="level1" type="Node2D" unique_id=411606668]
 position = Vector2(150, 115)
@@ -14,16 +10,3 @@ position = Vector2(15, -1)
 collision_layer = 1
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=82116706]
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1718273643]
-position = Vector2(311.6734, 104)
-rotation = 1.5707964
-scale = Vector2(0.1, 0.6032408)
-texture = ExtResource("2_446fn")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1920308282]
-position = Vector2(311.6734, 101.5)
-rotation = 1.5707964
-scale = Vector2(0.09999998, 0.60324067)
-shape = SubResource("RectangleShape2D_08neb")

@@ -1,0 +1,140 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/level_base.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://scene/backdrop.tscn" id="2_backdrop"]
+[ext_resource type="PackedScene" path="res://scene/palyer.tscn" id="3_player"]
+[ext_resource type="PackedScene" path="res://scene/ui/player_hud.tscn" id="4_hud"]
+[ext_resource type="PackedScene" path="res://scene/terrain/boundary_wall.tscn" id="5_bwall"]
+[ext_resource type="PackedScene" path="res://scene/terrain/terrain_ground_long.tscn" id="6_g_long"]
+[ext_resource type="PackedScene" path="res://scene/terrain/terrain_platform_floating.tscn" id="7_p_float"]
+[ext_resource type="PackedScene" path="res://scene/terrain/terrain_block_square.tscn" id="8_b_sq"]
+[ext_resource type="PackedScene" path="res://scene/terrain/terrain_corner_top_right.tscn" id="9_c_topright"]
+[ext_resource type="PackedScene" path="res://scene/terrain/terrain_corner_left.tscn" id="10_c_left"]
+[ext_resource type="PackedScene" path="res://scene/terrain/terrain_platform_step.tscn" id="11_p_step"]
+[ext_resource type="PackedScene" path="res://scene/terrain/terrain_corner_tall_left.tscn" id="12_c_tallleft"]
+[ext_resource type="PackedScene" path="res://scene/terrain/bouncy_pad.tscn" id="13_bounce"]
+[ext_resource type="PackedScene" path="res://scene/entities/flying_mob.tscn" id="14_flymob"]
+[ext_resource type="PackedScene" path="res://scene/entities/level_portal.tscn" id="16_portal"]
+[ext_resource type="PackedScene" path="res://scene/ui/dialogue_board.tscn" id="17_dialogue"]
+
+[node name="ParkourRun" type="Node2D"]
+script = ExtResource("1_script")
+level_number = 1
+level_name = "NEURAL HIGHWAY: PARKOUR RUN"
+
+[node name="Backdrop" parent="." instance=ExtResource("2_backdrop")]
+
+[node name="Terrain" type="Node2D" parent="."]
+
+[node name="LeftBoundaryWall" parent="Terrain" instance=ExtResource("5_bwall")]
+position = Vector2(-100, 300)
+
+[node name="StartGround" parent="Terrain" instance=ExtResource("6_g_long")]
+position = Vector2(170, 520)
+
+[node name="StartStep" parent="Terrain" instance=ExtResource("11_p_step")]
+position = Vector2(490, 480)
+
+[node name="Float1" parent="Terrain" instance=ExtResource("7_p_float")]
+position = Vector2(760, 410)
+
+[node name="Block1" parent="Terrain" instance=ExtResource("8_b_sq")]
+position = Vector2(980, 340)
+
+[node name="MidGround1" parent="Terrain" instance=ExtResource("6_g_long")]
+position = Vector2(1250, 340)
+
+[node name="DashBlock1" parent="Terrain" instance=ExtResource("8_b_sq")]
+position = Vector2(1540, 310)
+
+[node name="MidFloatBridge" parent="Terrain" instance=ExtResource("7_p_float")]
+position = Vector2(1760, 310)
+
+[node name="FlyingMob1" parent="Terrain" instance=ExtResource("14_flymob")]
+position = Vector2(1820, 210)
+
+[node name="DashFloat2" parent="Terrain" instance=ExtResource("7_p_float")]
+position = Vector2(2040, 290)
+
+[node name="StepFloatBridge" parent="Terrain" instance=ExtResource("11_p_step")]
+position = Vector2(2300, 290)
+
+[node name="FlyingMob2" parent="Terrain" instance=ExtResource("14_flymob")]
+position = Vector2(2350, 190)
+
+[node name="StepLanding" parent="Terrain" instance=ExtResource("11_p_step")]
+position = Vector2(2550, 300)
+
+[node name="BouncePad1" parent="Terrain" instance=ExtResource("13_bounce")]
+position = Vector2(2720, 230)
+
+[node name="CanyonTallWallLeft" parent="Terrain" instance=ExtResource("12_c_tallleft")]
+position = Vector2(2950, 100)
+
+[node name="CanyonWallRight1" parent="Terrain" instance=ExtResource("9_c_topright")]
+position = Vector2(3170, 150)
+
+[node name="CanyonWallRight2" parent="Terrain" instance=ExtResource("9_c_topright")]
+position = Vector2(3170, -60)
+
+[node name="CanyonCornerLeftUpper" parent="Terrain" instance=ExtResource("10_c_left")]
+position = Vector2(2950, -80)
+
+[node name="CanyonTopLedge" parent="Terrain" instance=ExtResource("6_g_long")]
+position = Vector2(3360, -180)
+
+[node name="SkywayCornerLeft" parent="Terrain" instance=ExtResource("10_c_left")]
+position = Vector2(3650, -140)
+
+[node name="SkywayFloat1" parent="Terrain" instance=ExtResource("7_p_float")]
+position = Vector2(3920, -100)
+
+[node name="SkywayBounce" parent="Terrain" instance=ExtResource("13_bounce")]
+position = Vector2(3920, -125)
+
+[node name="SkywayBlock" parent="Terrain" instance=ExtResource("8_b_sq")]
+position = Vector2(4220, -120)
+
+[node name="FlyingMob3" parent="Terrain" instance=ExtResource("14_flymob")]
+position = Vector2(4220, -200)
+
+[node name="SkywayFloat2" parent="Terrain" instance=ExtResource("7_p_float")]
+position = Vector2(4500, -80)
+
+[node name="FlyingMob4" parent="Terrain" instance=ExtResource("14_flymob")]
+position = Vector2(4700, -160)
+
+[node name="FinalRestGround" parent="Terrain" instance=ExtResource("6_g_long")]
+position = Vector2(4980, -50)
+
+[node name="FinalStep" parent="Terrain" instance=ExtResource("11_p_step")]
+position = Vector2(5260, -100)
+
+[node name="FinalLaunchBounce" parent="Terrain" instance=ExtResource("13_bounce")]
+position = Vector2(5340, -145)
+
+[node name="PinnacleStepFloat" parent="Terrain" instance=ExtResource("7_p_float")]
+position = Vector2(5580, -220)
+
+[node name="PinnacleLedge" parent="Terrain" instance=ExtResource("11_p_step")]
+position = Vector2(5820, -300)
+
+[node name="FlyingMob5" parent="Terrain" instance=ExtResource("14_flymob")]
+position = Vector2(5820, -380)
+
+[node name="PinnacleGround" parent="Terrain" instance=ExtResource("6_g_long")]
+position = Vector2(6100, -380)
+
+[node name="LevelPortal" parent="Terrain" instance=ExtResource("16_portal")]
+position = Vector2(6150, -440)
+next_level_path = "res://scene/levels/boss_level_sam_altman.tscn"
+
+[node name="RightBoundaryWall" parent="Terrain" instance=ExtResource("5_bwall")]
+position = Vector2(6350, -400)
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+position = Vector2(80, 440)
+
+[node name="PlayerHUD" parent="." instance=ExtResource("4_hud")]
+
+[node name="DialogueBoard" parent="." instance=ExtResource("17_dialogue")]

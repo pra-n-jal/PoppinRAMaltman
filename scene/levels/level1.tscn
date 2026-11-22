@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/level_base.gd" id="1_script"]
 [ext_resource type="PackedScene" path="res://scene/backdrop.tscn" id="2_backdrop"]
 [ext_resource type="PackedScene" path="res://scene/palyer.tscn" id="3_player"]
-[ext_resource type="PackedScene" path="res://scene/terrain/platform_ground.tscn" id="4_ground"]
-[ext_resource type="PackedScene" path="res://scene/terrain/platform_floating.tscn" id="5_float"]
+[ext_resource type="PackedScene" path="res://scene/terrain/terrain_ground_long.tscn" id="4_ground"]
+[ext_resource type="PackedScene" path="res://scene/terrain/terrain_platform_floating.tscn" id="5_float"]
 [ext_resource type="PackedScene" path="res://scene/terrain/boundary_wall.tscn" id="6_wall"]
 [ext_resource type="PackedScene" path="res://scene/entities/spawner.tscn" id="7_spawner"]
 [ext_resource type="PackedScene" path="res://scene/entities/mob.tscn" id="8_mob"]
@@ -12,11 +12,23 @@
 [ext_resource type="PackedScene" path="res://scene/entities/level_portal.tscn" id="10_portal"]
 [ext_resource type="PackedScene" path="res://scene/ui/boss_health_bar.tscn" id="11_boss_bar"]
 [ext_resource type="PackedScene" path="res://scene/ui/player_hud.tscn" id="12_hud"]
+[ext_resource type="PackedScene" path="res://scene/ui/dialogue_board.tscn" id="13_dialogue"]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_script")
 level_number = 1
-level_name = "Level 1"
+level_name = "Level 1: The Sloppenheimer"
+show_start_dialogue = true
+start_dialogue_lines = [{
+"speaker": "SAM ALTMAN",
+"text": "Welcome to my datacenter. I am the man. The myth. The Sloppenheimer."
+}, {
+"speaker": "MEUKEUL",
+"text": "Your infinite AI slop ends right here, Altman!"
+}, {
+"speaker": "SAM ALTMAN",
+"text": "Fool! I have 100,000 H100 GPUs and infinite RAM! Prepare to be instantly de-allocated!"
+}]
 
 [node name="Backdrop" parent="." instance=ExtResource("2_backdrop")]
 
@@ -77,4 +89,6 @@ portal_label_text = "Level 2"
 [node name="BossHealthBar" parent="." instance=ExtResource("11_boss_bar")]
 
 [node name="PlayerHUD" parent="." instance=ExtResource("12_hud")]
-level_title_text = "Level 1"
+level_title_text = "MAIN LEVEL: SAM ALTMAN"
+
+[node name="DialogueBoard" parent="." instance=ExtResource("13_dialogue")]

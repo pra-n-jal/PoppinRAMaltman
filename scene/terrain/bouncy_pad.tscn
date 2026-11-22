@@ -1,0 +1,19 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/bouncy_pad.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/terrain/bouncy_pad.png" id="2_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pad"]
+size = Vector2(64, 24)
+
+[node name="BouncyPad" type="Area2D"]
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_pad")

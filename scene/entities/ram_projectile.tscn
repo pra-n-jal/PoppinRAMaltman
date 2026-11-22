@@ -1,0 +1,30 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ram_projectile.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/boss/sam_altman/ram_stick.png" id="2_ram"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ram"]
+radius = 35.0
+
+[node name="RamProjectile" type="Area2D"]
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_ram")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ram")
+
+[node name="TrailParticles" type="CPUParticles2D" parent="."]
+amount = 24
+lifetime = 0.4
+spread = 40.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 90.0
+scale_amount_min = 3.5
+scale_amount_max = 7.5
+color = Color(0.15, 0.95, 0.45, 0.9)

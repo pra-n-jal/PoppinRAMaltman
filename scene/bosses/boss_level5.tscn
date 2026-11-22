@@ -1,13 +1,10 @@
 [gd_scene format=3]
 
-[ext_resource type="PackedScene" path="res://scene/bosses/boss_base.tscn" id="1_base"]
+[ext_resource type="PackedScene" path="res://scene/bosses/boss_sam_altman.tscn" id="1_altman"]
 
-[node name="BossLevel5" instance=ExtResource("1_base")]
-boss_name = "Boss 5"
-boss_title = ""
-boss_quote = ""
-phase2_quote = ""
-max_health = 480.0
-move_speed = 155.0
-dash_speed = 440.0
-attack_interval = 1.9
+[node name="BossLevel5" instance=ExtResource("1_altman")]
+boss_name = "Sam Altman"
+boss_title = "The Sloppenheimer"
+boss_quote = "Behold my compute. All the RAM belongs to me."
+phase2_quote = "Overclocking datacenters! Prepare for instant allocation!"
+max_health = 500.0

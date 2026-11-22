@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://chcl5h5hrvrqm"]
 
 [ext_resource type="Script" uid="uid://3473yfhlt1mu" path="res://scripts/mob_base.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://bdfda3fgr4wvo" path="res://assets/placeholders/mob_icon.png" id="2_b28c3"]
+[ext_resource type="Texture2D" uid="uid://bdfda3fgr4wvo" path="res://assets/entities/neuron_mob.png" id="2_b28c3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mob"]
 size = Vector2(36, 46)
@@ -56,6 +56,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=617941335]
+position = Vector2(304, 225)
 shape = SubResource("CircleShape2D_detect")
 
 [node name="StompArea" type="Area2D" parent="." unique_id=1161274886]

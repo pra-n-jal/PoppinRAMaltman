@@ -1,0 +1,27 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/checkpoint.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/entities/checkpoint.png" id="2_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp"]
+size = Vector2(40, 60)
+
+[node name="Checkpoint" type="Area2D"]
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cp")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -60.0
+offset_top = -45.0
+offset_right = 60.0
+offset_bottom = -25.0
+theme_override_font_sizes/font_size = 11
+text = "CHECKPOINT"
+horizontal_alignment = 1
